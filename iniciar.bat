@@ -1,4 +1,4 @@
-# php artisan -V, --version
+php artisan -V, --version
 php artisan config:clear
 php artisan cache:clear
 php artisan clear-compiled

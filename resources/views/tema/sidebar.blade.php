@@ -6,8 +6,8 @@
                 <div class="dropdown profile-element">
                     <img alt="image" class="rounded-circle" src="/tema/img/profile_small.jpg"/>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="block m-t-xs font-bold">David Williams</span>
-                        <span class="text-muted text-xs block">Administrator</span>
+                        <span class="block m-t-xs font-bold">Marcelo Cuba</span>
+                        <span class="text-muted text-xs block">Administrador</span>
                     </a>
                 </div>
                 <div class="logo-element">
@@ -26,7 +26,7 @@
                 </ul>
             </li>
             <li>
-                <a href="/produtos"><i class="fa fa-cube" aria-hidden="true"></i> <span class="nav-label">Productos</span> <span class="fa arrow"></span></a>
+                <a href="/admin/plans"><i class="fa fa-cube" aria-hidden="true"></i> <span class="nav-label">Planos</span> <span class="fa arrow"></span></a>
             </li>
             <li>
                 <a href="config"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Configuraciones</span> <span class="fa arrow"></span></a>

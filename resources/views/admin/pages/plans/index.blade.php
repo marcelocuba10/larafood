@@ -6,13 +6,10 @@
         <h2>Listagem de planos</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="index-2.html">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a>E-commerce</a>
+                <a href="{{route('admin.index')}}">Inicio</a>
             </li>
             <li class="breadcrumb-item active">
-                <strong>{{$title}} list</strong>
+                <a href="{{route('admin.index')}}">Planos</a>
             </li>
         </ol>
     </div>
@@ -101,7 +98,7 @@
                                         <td>{{ $plan->name }}</td>
                                         <td>{{ $plan->url }}</td>
                                         <td>{{ $plan->description }}</td>
-                                        <td>{{ $plan->price }}</td>
+                                        <td>{{ number_format($plan->price,3,',','.') }}</td>
                                         <td>
                                             <span
                                                 class="label label-primary @if($plan->status == 1) label-primary @else label-warning @endif">{{
@@ -109,13 +106,12 @@
                                         </td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <button class="btn btn-success btn-xs btn_list_options"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="View"><i class="fa fa-eye"
-                                                        aria-hidden="true"></i></button>
-                                                <a href=" {{ url('plans/'.$plan->id.'/edit') }}"
-                                                    class="btn btn-primary btn-xs btn_list_options"><i
-                                                        class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a href=" {{ route('plans.show', $plan->url) }}" class="btn btn-success btn-xs btn_list_options">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </a>
+                                                <a href=" {{ route('plans.edit', $plan->url) }}" class="btn btn-primary btn-xs btn_list_options">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </a>
                                                 <button type="button"
                                                     class="btn btn-danger btn-xs btn_list_options"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"

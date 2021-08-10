@@ -76,9 +76,6 @@
                                             colspan="1" aria-label="Name: activate to sort column ascending"
                                             style="width: 299px;">Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                            colspan="1" aria-label="URL: activate to sort column ascending"
-                                            style="width: 270px;">URL</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                                             colspan="1" aria-label="Description: activate to sort column ascending"
                                             style="width: 207px;">Description</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
@@ -97,7 +94,6 @@
                                     @foreach ($plans as $plan)
                                     <tr class="gradeA odd" role="row">
                                         <td>{{ $plan->name }}</td>
-                                        <td>{{ $plan->url }}</td>
                                         <td>{{ $plan->description }}</td>
                                         <td>{{ number_format($plan->price,3,',','.') }}</td>
                                         <td>
@@ -107,6 +103,9 @@
                                         </td>
                                         <td class="text-right">
                                             <div class="btn-group">
+                                                <a href="{{ route('details.plan.index', $plan->url) }}" class="btn btn-secondary btn-xs btn_list_options">
+                                                    <i class="fa fa-list-alt" aria-hidden="true"></i>
+                                                </a>
                                                 <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-success btn-xs btn_list_options">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
@@ -114,23 +113,13 @@
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
                                                 <a href=" {{ route('plans.delete', $plan->url) }}" class="btn btn-danger btn-xs btn_list_options">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th rowspan="1" colspan="1">Name</th>
-                                        <th rowspan="1" colspan="1">URL</th>
-                                        <th rowspan="1" colspan="1">Description</th>
-                                        <th rowspan="1" colspan="1">Price</th>
-                                        <th rowspan="1" colspan="1">Status</th>
-                                        <th rowspan="1" colspan="1">Actions</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                             @if (isset($filters))
                                 {!! $plans-> appends($filters)->links() !!} <!-- appends envia variable en la paginacion-->

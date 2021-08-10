@@ -14,22 +14,39 @@
                     IN+
                 </div>
             </li>
-            <li class="active">
-                <a href="dashboard"><i class="fa fa-th-large" aria-hidden="true"></i> <span class="nav-label">Dashboard</span> <span class="fa arrow"></span></a>
+            <li class="{{ Route::currentRouteNamed('admin.dashboard') ? 'active' : '' }}">
+                <a href="{{ route('admin.dashboard') }}"><i class="fa fa-line-chart" aria-hidden="true"></i> <span class="nav-label">Dashboard</span></a>
             </li>
             <li>
-                <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Registrar</span> <span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Register</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="index-2.html">Clientes</a></li>
-                    <li><a href="dashboard_2.html">Proveedores</a></li>
-                    <li><a href="dashboard_3.html">Usuarios</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Customers</a></li>
+                    <li><a href="#">Supliers</a></li>
+                    <li><a href="#">Users</a></li>
+                    <li><a href="#">Deposit</a></li>
                 </ul>
             </li>
             <li>
-                <a href="/admin/plans"><i class="fa fa-cube" aria-hidden="true"></i> <span class="nav-label">Planos</span> <span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-exchange"></i> <span class="nav-label">Movements</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="#">Entrada</a></li>
+                    <li><a href="#">Salida</a></li>
+                    <li><a href="#">Reposicion</a></li>
+                </ul>
+            </li>
+            <li class="{{ Route::currentRouteNamed('plans.index') ? 'active' : '' }}">
+                <a href="{{ route('plans.index') }}"><i class="fa fa-cube " aria-hidden="true"></i> <span class="nav-label">Plans</span></a>
             </li>
             <li>
-                <a href="config"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Configuraciones</span> <span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Settings</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">General</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> <span class="nav-label">Logout</span></a>
             </li>
         </ul>
 

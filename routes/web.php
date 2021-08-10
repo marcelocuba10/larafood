@@ -1,18 +1,33 @@
 <?php
 
-//create primero para evitar errores a la hora de crear
-Route::get('admin/plans/create', 'Admin\PlanController@create')->name('plans.create');
-Route::put('admin/plans/{url}','Admin\PlanController@update')->name('plans.update');
-Route::get('admin/plans/{url}/edit','Admin\PlanController@edit')->name('plans.edit');
-Route::get('admin/plans/{url}', 'Admin\PlanController@show')->name('plans.show');
-Route::post('admin/plans','Admin\PlanController@store')->name('plans.store');
-Route::get('admin/plans', 'Admin\PlanController@index')->name('plans.index');
+Route::prefix('admin')
+        ->namespace('admin')
+        ->group(function(){
 
-Route::get('admin', 'Admin\PlanController@index')->name('admin.index');
+    /**
+     * Routes Details Plans
+     */
+    Route::get('plans/{url}/details','DetailPlanController@index')->name('details.plan.index');        
+
+    /**
+    * Routes Plans
+    */
+    Route::get('plans/create','PlanController@create')->name('plans.create');
+    Route::put('plans/{url}/update','PlanController@update')->name('plans.update');
+    Route::get('plans/{url}/edit','PlanController@edit')->name('plans.edit');
+    Route::get('plans/{url}/show','PlanController@show')->name('plans.show');
+    Route::post('plans','PlanController@store')->name('plans.store');
+    Route::get('plans','PlanController@index')->name('plans.index');
+    Route::any('plans/search','PlanController@search')->name('plans.search');
+    Route::any('plans/{url}/delete','PlanController@delete')->name('plans.delete');
+    Route::get('dashboard','PlanController@home')->name('admin.dashboard');
+    Route::get('/', 'PlanController@index')->name('admin.index');
+});
+
+/**
+ * Home Dashboard
+ * 
+ */
+Route::get('/','Admin\PlanController@home');
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/','Admin\PlanController@index');

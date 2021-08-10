@@ -3,13 +3,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Editar o plano {{ $plan->name}}</h2>
+        <h2>Edit Plan</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('admin.index')}}">Planos</a>
+                <a href="{{ route('admin.index') }}">Plans</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="{{ route('admin.index')}}"><b>Planos detail</b></a>
+                <a href="{{ route('plans.edit', $plan->url) }}"><b>Edit Plan</b></a>
             </li>
         </ol>
     </div>

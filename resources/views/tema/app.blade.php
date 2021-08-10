@@ -82,8 +82,8 @@
     <script src="/tema/js/plugins/toastr/toastr.min.js"></script>
 
     <!-- DataTables -->
-    <script src="js/plugins/dataTables/datatables.min.js"></script>
-    <script src="js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="/tema/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="/tema/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
     <script>
         $(document).ready(function () {

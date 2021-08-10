@@ -6,7 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
-    protected $fillable=['name','url','price','description','status'];
-
+    protected $fillable = ['name','url','price','description','status'];
     protected $hidden=['created_at','updated_at'];
+
+    public function details(){
+        return $this->hasMany(DetailPlan::class);
+    }
+
+    public function search ($filter = null){
+        $results = $this->where('name', 'LIKE', "%{$filter}%" )
+                    ->orWhere('description', 'LIKE', "%{$filter}%" ) //comillas dobles cuando hay variable dentro
+                    ->paginate();
+
+                    return $results;
+    }
+
 }

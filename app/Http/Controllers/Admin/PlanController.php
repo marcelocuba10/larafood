@@ -89,10 +89,19 @@ class PlanController extends Controller
     public function delete($url)
     {
 
-        $plan = $this->repository->where('url', $url)->first();
+        $plan = $this->repository
+            ->with('details')
+            ->where('url', $url)
+            ->first();
 
         if (empty($plan)) {
             return redirect()->back();
+        }
+
+        if ($plan->details->count() > 0) {
+            return redirect()
+                ->back()
+                ->with('error', 'No se puede eliminar este plan porque exiten detalles vinculados con este plano');
         }
 
         $plan->delete();

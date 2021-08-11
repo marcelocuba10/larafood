@@ -23,17 +23,10 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <a href="{{ route('plans.create') }}" title="Create a product" class="btn btn-primary btn-xs btn_list_options"><i
-                                        class="fa fa-plus" aria-hidden="true"></i> New Product</a>
-                                @if ($message = Session::get('success'))
-                                    <div class="alert alert-success">
-                                        <p>{{ $message }}</p>
-                                    </div>
-                                @endif
+                                <a href="{{ route('plans.create') }}" title="Create a product" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> New Product</a>
                             </div>
                         </div>
                     </div>
-
                     <div class="table-responsive">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="html5buttons">
@@ -112,9 +105,11 @@
                                                 <a href=" {{ route('plans.edit', $plan->url) }}" class="btn btn-primary btn-xs btn_list_options">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
-                                                <a href=" {{ route('plans.delete', $plan->url) }}" class="btn btn-danger btn-xs btn_list_options">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a>
+                                                <form method="POST" action="{{ route('plans.delete', $plan->url) }}">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger btn-xs btn_list_options show_confirm" data-toggle="tooltip" title='Eliminar'><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

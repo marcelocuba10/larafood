@@ -26,17 +26,10 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <a href="{{ route('details.plan.create',$plan->url) }}" title="New detail" class="btn btn-primary btn-xs btn_list_options"><i
-                                        class="fa fa-plus" aria-hidden="true"></i> New detail</a>
-                                @if ($message = Session::get('success'))
-                                    <div class="alert alert-success">
-                                        <p>{{ $message }}</p>
-                                    </div>
-                                @endif
+                                <a href="{{ route('details.plan.create',$plan->url) }}" title="New detail" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> New detail</a>
                             </div>
                         </div>
                     </div>
-
                     <div class="table-responsive">
                         <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="html5buttons">
@@ -84,29 +77,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @foreach ($details as $detail)
                                     <tr class="gradeA odd" role="row">
                                         <td>{{ $detail->name }}</td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-success btn-xs btn_list_options">
+                                                <a href="{{ route('details.plan.show', [$plan->url, $detail->id]) }}" class="btn btn-success btn-xs btn_list_options">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
-                                                <a href=" {{ route('details.plan.edit', [$plan->url,$detail->id]) }}" class="btn btn-primary btn-xs btn_list_options">
+                                                <a href=" {{ route('details.plan.edit', [$plan->url, $detail->id]) }}" class="btn btn-primary btn-xs btn_list_options">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
-                                                <a href=" {{ route('plans.delete', $plan->url) }}" class="btn btn-danger btn-xs btn_list_options">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a>
+                                                <form method="POST" action="{{ route('details.plan.delete', [$plan->url, $detail->id]) }}">
+                                                    @csrf
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger btn-xs btn_list_options show_confirm" data-toggle="tooltip" title='Eliminar'><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-
-                            
                         </div>
                     </div>
                 </div>
@@ -114,5 +106,4 @@
         </div>
     </div>
 </div>
-
 @endsection

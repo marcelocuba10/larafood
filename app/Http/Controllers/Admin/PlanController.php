@@ -19,7 +19,8 @@ class PlanController extends Controller
         $this->repository = $plan;
     }
 
-    public function home(){
+    public function home()
+    {
         return view('admin.pages.dashboard');
     }
 
@@ -40,7 +41,7 @@ class PlanController extends Controller
     }
 
     //salvar datos
-    public function store(StoreUpdatePlan $request)//StoreUpdatePlan valida datos, funcion alojada en http/request/
+    public function store(StoreUpdatePlan $request) //StoreUpdatePlan valida datos, funcion alojada en http/request/
     {
         //  dd($request->all());
         $data = $request->all();
@@ -57,7 +58,7 @@ class PlanController extends Controller
         if (empty($plan)) {
             return redirect()->back();
         }
-        
+
         return view('admin.pages.plans.show', ['plan' => $plan]);
     }
 
@@ -67,13 +68,14 @@ class PlanController extends Controller
         if (empty($plan)) {
             return redirect()->back();
         }
-        
+
         return view('admin.pages.plans.edit', ['plan' => $plan]);
     }
 
-    public function update(Request $request , $url){ //$request es un objeto
+    public function update(Request $request, $url)
+    { //$request es un objeto
 
-        $plan = $this->repository->where('url',$url)->first();
+        $plan = $this->repository->where('url', $url)->first();
 
         if (empty($plan)) {
             return redirect()->back();
@@ -82,12 +84,12 @@ class PlanController extends Controller
         $plan->update($request->all());
 
         return redirect()->route('plans.index');
-
     }
 
-    public function delete($url){
+    public function delete($url)
+    {
 
-        $plan = $this->repository->where('url',$url)->first();
+        $plan = $this->repository->where('url', $url)->first();
 
         if (empty($plan)) {
             return redirect()->back();
@@ -95,19 +97,20 @@ class PlanController extends Controller
 
         $plan->delete();
 
-        return redirect()->route('plans.index');
-
+        return redirect()
+            ->route('plans.index')
+            ->with('message', 'Registro eliminado con exito');
     }
 
-    public function search (Request $request){
+    public function search(Request $request)
+    {
 
         $filters = $request->all(); //traer todos los datos
         $filters = $request->except('_token'); //excluir un campo
         $plans = $this->repository->search($request->filter); //envio el valor de filter a mi funcion search en model/plan
 
-        return view('admin.pages.plans.index',['plans' => $plans, 'filters' => $filters]); //muestro los resultados
+        return view('admin.pages.plans.index', ['plans' => $plans, 'filters' => $filters]); //muestro los resultados
 
 
     }
-
 }

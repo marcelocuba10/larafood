@@ -32,18 +32,16 @@ class DetailPlanController extends Controller
         return view('admin.pages.plans.details.index', ['plan' => $plan, 'details' => $details]);
     }
 
-    public function show($urlPlan)
+    public function show($urlPlan, $idDetail)
     {
-        //si no encuentra el plan, redirecciona
-        if (!$plan = $this->plan->where('url', $urlPlan)->first()) {
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+
+        if (!$plan && !$detail) {
             return redirect()->back();
         }
 
-        //recupera todos los datos de ese plano especifico
-        //$details = $plan->details();
-        $details = $plan->details()->paginate();
-
-        return view('admin.pages.plans.details.index', ['plan' => $plan, 'details' => $details]);
+        return view('admin.pages.plans.details.show', ['plan' => $plan, 'detail' => $detail]);
     }
 
     public function create($urlPlan)
@@ -56,7 +54,7 @@ class DetailPlanController extends Controller
         return view('admin.pages.plans.details.create', compact('plan'));
     }
 
-    public function store(StoreUpdateDetailPlan $request, $urlPlan)//StoreUpdateDetailPlan valida datos, funcion alojada en http/request/
+    public function store(StoreUpdateDetailPlan $request, $urlPlan) //StoreUpdateDetailPlan valida datos, funcion alojada en http/request/
     {
         //si no encuentra el plan, redirecciona
         if (!$plan = $this->plan->where('url', $urlPlan)->first()) {
@@ -89,7 +87,7 @@ class DetailPlanController extends Controller
 
     public function update(StoreUpdateDetailPlan $request, $urlPlan, $idDetail) //StoreUpdateDetailPlan valida datos, funcion alojada en http/request/
     {
-        
+
         $plan = $this->plan->where('url', $urlPlan)->first();
         $detail = $this->repository->find($idDetail);
 
@@ -99,7 +97,23 @@ class DetailPlanController extends Controller
 
         $detail->update($request->all());
 
-        return redirect()->route('details.plan.index',$plan->url);
+        return redirect()->route('details.plan.index', $plan->url);
+    }
 
+    public function delete($urlPlan, $idDetail)
+    {
+
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+
+        if (!$plan && !$detail) {
+            return redirect()->back();
+        }
+
+        $detail->delete();
+
+        return redirect()
+                    ->route('details.plan.index', $plan->url)
+                    ->with('message','Registro eliminado con exito');
     }
 }

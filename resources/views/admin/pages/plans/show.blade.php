@@ -40,14 +40,11 @@
                     <div class="form-group row">
                         <div class="col-sm-4 col-sm-offset-2">
                             <a class="btn btn-white btn-sm" href="{{ route('plans.index') }}" >Cancel</a>  
-                            <a class="btn btn-danger btn-sm" href="{{ route('plans.delete',$plan->url) }}" >Delete</a>
-                        </div> 
-                        <div class="col-sm-4 col-sm-offset-2">
-                            <form method="POST" action="{{ route('plans.delete', $plan->url) }}">
+                            <form style="display: inline-table;" method="POST" action="{{ route('plans.delete', $plan->url) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger btn-sm" type="submit">Delete with form</button>
-                            </form>  
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
                         </div> 
                     </div>
                 </div>

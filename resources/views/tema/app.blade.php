@@ -34,6 +34,8 @@
 
         <div id="page-wrapper" class="gray-bg">
 
+            @include('admin.includes.alerts')
+
             @include('tema.nav')
 
             @yield('content')
@@ -97,7 +99,7 @@
                 });
                 toast.toast('show');
 
-            }, 2200);
+            }, 2000);
 
             var data1 = [
                 [0, 4], [1, 8], [2, 5], [3, 10], [4, 4], [5, 16], [6, 5], [7, 11], [8, 6], [9, 11], [10, 30], [11, 10], [12, 13], [13, 4], [14, 3], [15, 3], [16, 6]
@@ -221,7 +223,30 @@
         });
 
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    
+        $('.show_confirm').click(function(event) {
+            var form =  $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title: `¿Está seguro de que desea eliminar este registro?`,
+                text: "Si borra esto, desaparecerá para siempre.",
+                icon: "Aviso",
+                buttons: true,
+                dangerMode: true,
+                confirmButtonText: 'Eliminar!',
+                cancelButtonText: 'Cancelar',
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                form.submit();
+                }
+            });
+        });
+    
+    </script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
 <div class="hr-line-dashed"></div>
 <div class="form-group row">
     <div class="col-sm-4 col-sm-offset-2">
-        <a class="btn btn-white btn-sm" href="{{ route('admin.index') }}" >Cancel</a>
+        <a class="btn btn-white btn-sm" href="{{ route('details.plan.index', $plan->url) }}" >Cancel</a>
         <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
     </div>
 </div>

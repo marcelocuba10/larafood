@@ -40,7 +40,7 @@ class PlanController extends Controller
     }
 
     //salvar datos
-    public function store(StoreUpdatePlan $request)
+    public function store(StoreUpdatePlan $request)//StoreUpdatePlan valida datos, funcion alojada en http/request/
     {
         //  dd($request->all());
         $data = $request->all();

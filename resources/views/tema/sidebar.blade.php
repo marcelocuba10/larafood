@@ -38,6 +38,9 @@
             <li class="{{ Route::currentRouteNamed('plans.index') ? 'active' : '' }}">
                 <a href="{{ route('plans.index') }}"><i class="fa fa-cube " aria-hidden="true"></i> <span class="nav-label">Plans</span></a>
             </li>
+            <li class="{{ Route::currentRouteNamed('profiles.index') ? 'active' : '' }}">
+                <a href="{{ route('profiles.index') }}"><i class="fa fa-cube " aria-hidden="true"></i> <span class="nav-label">Profiles</span></a>
+            </li>
             <li>
                 <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Settings</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

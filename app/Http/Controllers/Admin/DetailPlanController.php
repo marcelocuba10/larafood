@@ -69,7 +69,9 @@ class DetailPlanController extends Controller
         //opcion #2
         $plan->details()->create($request->all());
 
-        return redirect()->route('details.plan.index', $plan->url);
+        return redirect()
+            ->route('details.plan.index', $plan->url)
+            ->with('message','Registro creado con éxito!');
     }
 
     public function edit($urlPlan, $idDetail)
@@ -97,7 +99,9 @@ class DetailPlanController extends Controller
 
         $detail->update($request->all());
 
-        return redirect()->route('details.plan.index', $plan->url);
+        return redirect()
+            ->route('details.plan.index', $plan->url)
+            ->with('message','Registro actualizado con éxito!');
     }
 
     public function delete($urlPlan, $idDetail)
@@ -114,6 +118,6 @@ class DetailPlanController extends Controller
 
         return redirect()
                     ->route('details.plan.index', $plan->url)
-                    ->with('message','Registro eliminado con exito');
+                    ->with('message','Registro eliminado con éxito!');
     }
 }

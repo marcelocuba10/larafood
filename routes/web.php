@@ -5,6 +5,12 @@ Route::prefix('admin')
     ->group(function () {
 
         /**
+         * Routes Profiles
+         */
+
+        Route::resource('profiles','ACL\ProfileController'); 
+
+        /**
          * Routes Details Plans
          */
         Route::post('plans/{url}/details/create', 'DetailPlanController@store')->name('details.plan.store');

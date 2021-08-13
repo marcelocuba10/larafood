@@ -36,10 +36,13 @@
                 </ul>
             </li>
             <li class="{{ Route::currentRouteNamed('plans.index') ? 'active' : '' }}">
-                <a href="{{ route('plans.index') }}"><i class="fa fa-cube " aria-hidden="true"></i> <span class="nav-label">Plans</span></a>
+                <a href="{{ route('plans.index') }}"><i class="fa fa-cube " aria-hidden="true"></i> <span class="nav-label">Planes</span></a>
             </li>
             <li class="{{ Route::currentRouteNamed('profiles.index') ? 'active' : '' }}">
-                <a href="{{ route('profiles.index') }}"><i class="fa fa-cube " aria-hidden="true"></i> <span class="nav-label">Profiles</span></a>
+                <a href="{{ route('profiles.index') }}"><i class="fa fa-cube " aria-hidden="true"></i> <span class="nav-label">Perfiles</span></a>
+            </li>
+            <li class="{{ Route::currentRouteNamed('permissions.index') ? 'active' : '' }}">
+                <a href="{{ route('permissions.index') }}"><i class="fa fa-lock " aria-hidden="true"></i> <span class="nav-label">Permisos</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span class="nav-label">Settings</span> <span class="fa arrow"></span></a>

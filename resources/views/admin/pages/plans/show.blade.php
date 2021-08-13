@@ -23,17 +23,17 @@
                 <div class="ibox-content">
                     <div class="form-group  row"><label class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" class="form-control" placeholder="Enter name" autocomplete="off" value="{{ $plan->name ?? '' }}">
+                            <input type="text" readonly name="name" class="form-control" placeholder="Enter name" autocomplete="off" value="{{ $plan->name ?? '' }}">
                         </div>
                     </div>
                     <div class="form-group  row"><label class="col-sm-2 col-form-label">Price</label>
                         <div class="col-sm-10">
-                            <input type="text" name="price" class="form-control" placeholder="Enter price" autocomplete="off" value="{{ $plan->price ?? '' }}">
+                            <input type="text" readonly name="price" class="form-control" placeholder="Enter price" autocomplete="off" value="{{ $plan->price ?? '' }}">
                         </div>
                     </div>
                     <div class="form-group  row"><label class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
-                            <input type="text" name="description" class="form-control" placeholder="Enter description" autocomplete="off" value="{{ $plan->description ?? '' }}">
+                            <input type="text" readonly name="description" class="form-control" placeholder="Enter description" autocomplete="off" value="{{ $plan->description ?? '' }}">
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>

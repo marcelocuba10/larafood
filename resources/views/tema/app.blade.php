@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html>
-<!-- http://webapplayers.com/inspinia_admin-v2.9.4/ecommerce_product_list.html -->
+<!-- http://webapplayers.com/inspinia_admin-v2.9.4 -->
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>CRUD | Dashboard</title>
-
     <link href="/tema/css/bootstrap.min.css" rel="stylesheet">
     <link href="/tema/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="/tema/css/custom.css" rel="stylesheet">
-
-    <!-- Datatables -->
     <link href="/tema/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <link href="/tema/js/plugins/dataTables/datatables.min.js" rel="stylesheet">
-
-    <!-- Toastr style -->
     <link href="/tema/css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <!-- Gritter -->
     <link href="/tema/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="/tema/css/animate.css" rel="stylesheet">
     <link href="/tema/css/style.css" rel="stylesheet">
@@ -43,47 +35,26 @@
         </div>
     </div>
 
-    <!-- Mainly scripts -->
     <script src="/tema/js/jquery-3.1.1.min.js"></script>
     <script src="/tema/js/popper.min.js"></script>
     <script src="/tema/js/bootstrap.js"></script>
     <script src="/tema/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="/tema/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Flot -->
     <script src="/tema/js/plugins/flot/jquery.flot.js"></script>
     <script src="/tema/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
     <script src="/tema/js/plugins/flot/jquery.flot.spline.js"></script>
     <script src="/tema/js/plugins/flot/jquery.flot.resize.js"></script>
     <script src="/tema/js/plugins/flot/jquery.flot.pie.js"></script>
-
-    <!-- Peity -->
     <script src="/tema/js/plugins/peity/jquery.peity.min.js"></script>
     <script src="/tema/js/demo/peity-demo.js"></script>
-
-    <!-- Custom and plugin javascript -->
     <script src="/tema/js/inspinia.js"></script>
     <script src="/tema/js/plugins/pace/pace.min.js"></script>
-
-    <!-- jQuery UI -->
     <script src="/tema/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-    <!-- GITTER -->
     <script src="/tema/js/plugins/gritter/jquery.gritter.min.js"></script>
-
-    <!-- Sparkline -->
     <script src="/tema/js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-    <!-- Sparkline demo data  -->
     <script src="/tema/js/demo/sparkline-demo.js"></script>
-
-    <!-- ChartJS-->
     <script src="/tema/js/plugins/chartJs/Chart.min.js"></script>
-
-    <!-- Toastr -->
     <script src="/tema/js/plugins/toastr/toastr.min.js"></script>
-
-    <!-- DataTables -->
     <script src="/tema/js/plugins/dataTables/datatables.min.js"></script>
     <script src="/tema/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
@@ -98,7 +69,6 @@
                     animation: true
                 });
                 toast.toast('show');
-
             }, 2000);
 
             var data1 = [
@@ -153,14 +123,12 @@
                 }]
             };
 
-
             var doughnutOptions = {
                 responsive: false,
                 legend: {
                     display: false
                 }
             };
-
 
             var ctx4 = document.getElementById("doughnutChart").getContext("2d");
             new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
@@ -173,14 +141,12 @@
                 }]
             };
 
-
             var doughnutOptions = {
                 responsive: false,
                 legend: {
                     display: false
                 }
             };
-
 
             var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
             new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
@@ -193,7 +159,6 @@
 
         });
     </script>
-    <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function(){
             $('.dataTables-example').DataTable({
@@ -217,9 +182,7 @@
                     }
                     }
                 ]
-
             });
-
         });
 
     </script>

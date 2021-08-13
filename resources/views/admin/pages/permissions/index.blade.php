@@ -3,13 +3,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Listado de perfiles</h2>
+        <h2>Listado de Permisos</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ route('admin.index') }}">Inicio</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="{{ route('profiles.index') }}">Perfiles</a>
+                <a href="{{ route('permissions.index') }}">Permisos</a>
             </li>
         </ol>
     </div>
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <a href="{{ route('profiles.create') }}" title="Crear un perfil" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Perfil</a>
+                                <a href="{{ route('permissions.create') }}" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Permiso</a>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                 </label>
                             </div>
 
-                            <form action="{{ route('profiles.search') }}" method="POST">
+                            <form action="{{ route('permissions.search') }}" method="POST">
                                 @csrf
                                 <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                     <label>Buscar: 
@@ -78,21 +78,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($profiles as $profile)
+                                    @foreach ($permissions as $permission)
                                     <tr class="gradeA odd" role="row">
-                                        <td>{{ $profile->name }}</td>
+                                        <td>{{ $permission->name }}</td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-success btn-xs btn_list_options">
-                                                    <i class="fa fa-lock" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-success btn-xs btn_list_options">
+                                                <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-success btn-xs btn_list_options">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
-                                                <a href=" {{ route('profiles.edit', $profile->id) }}" class="btn btn-primary btn-xs btn_list_options">
+                                                <a href=" {{ route('permissions.edit', $permission->id) }}" class="btn btn-primary btn-xs btn_list_options">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
-                                                <form method="POST" action="{{ route('profiles.destroy', $profile->id) }}">
+                                                <form method="POST" action="{{ route('permissions.destroy', $permission->id) }}">
                                                     @csrf
                                                     <input name="_method" type="hidden" value="DELETE">
                                                     <button type="submit" class="btn btn-danger btn-xs btn_list_options show_confirm" data-toggle="tooltip" title='Eliminar'><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -104,9 +101,9 @@
                                 </tbody>
                             </table>
                             @if (isset($filters))
-                                {!! $profiles-> appends($filters)->links() !!} <!-- appends envia variable en la paginacion-->
+                                {!! $permissions-> appends($filters)->links() !!} <!-- appends envia variable en la paginacion-->
                             @else
-                                {!! $profiles-> links() !!}    
+                                {!! $permissions-> links() !!}    
                             @endif
                             
                         </div>

@@ -27,9 +27,9 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-content">
-                    <div class="form-group  row"><label class="col-sm-2 col-form-label">Name</label>
+                    <div class="form-group  row"><label class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" class="form-control" placeholder="Enter name" autocomplete="off" value="{{ $detail->name ?? '' }}">
+                            <input type="text" readonly name="name" class="form-control" placeholder="Enter name" autocomplete="off" value="{{ $detail->name ?? '' }}">
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>

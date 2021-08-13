@@ -5,10 +5,12 @@ Route::prefix('admin')
     ->group(function () {
 
         /**
-         * Routes Permissions c Profiles
+         * Routes Permissions x Profiles
          */
-
-        Route::get('profiles/{id}/permissions','ACL\PermissionProfileController')->name('profiles.permissions');
+        
+        Route::post('profiles/{id}/permissions/store','ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
+        Route::get('profiles/{id}/permissions/create','ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+        Route::get('profiles/{id}/permissions','ACL\PermissionProfileController@permissions')->name('profiles.permissions');
 
         /**
          * Routes Permissions
@@ -27,6 +29,7 @@ Route::prefix('admin')
         /**
          * Routes Details Plans
          */
+
         Route::post('plans/{url}/details/create', 'DetailPlanController@store')->name('details.plan.store');
         Route::get('plans/{url}/details/create', 'DetailPlanController@create')->name('details.plan.create');
 
@@ -41,6 +44,7 @@ Route::prefix('admin')
         /**
          * Routes Plans
          */
+
         Route::post('plans', 'PlanController@store')->name('plans.store');
         Route::get('plans/create', 'PlanController@create')->name('plans.create');
 
@@ -61,4 +65,5 @@ Route::prefix('admin')
  * Home Dashboard
  * 
  */
+
 Route::get('/', 'Admin\PlanController@home');

@@ -1,15 +1,14 @@
-@extends('tema.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>Listado de perfiles</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('admin.index') }}">Inicio</a>
+                <a href="<?php echo e(route('admin.index')); ?>">Inicio</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="{{ route('profiles.index') }}">Perfiles</a>
+                <a href="<?php echo e(route('profiles.index')); ?>">Perfiles</a>
             </li>
         </ol>
     </div>
@@ -23,7 +22,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <a href="{{ route('profiles.create') }}" title="Crear un perfil" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Perfil</a>
+                                <a href="<?php echo e(route('profiles.create')); ?>" title="Crear un perfil" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Perfil</a>
                             </div>
                         </div>
                     </div>
@@ -55,11 +54,11 @@
                                 </label>
                             </div>
 
-                            <form action="{{ route('profiles.search') }}" method="POST">
-                                @csrf
+                            <form action="<?php echo e(route('profiles.search')); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
                                 <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                     <label>Buscar: 
-                                        <input type="search" name="filter" class="form-control form-control-sm" value="{{ $filters['filter'] ?? '' }}" aria-controls="DataTables_Table_0">
+                                        <input type="search" name="filter" class="form-control form-control-sm" value="<?php echo e($filters['filter'] ?? ''); ?>" aria-controls="DataTables_Table_0">
                                     </label>
                                     <button class="btn btn-success btn-xs btn_list_options" type="submit" style="margin-top: -5px">Filtrar</button>
                                 </div>
@@ -78,36 +77,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($profiles as $profile)
+                                    <?php $__currentLoopData = $profiles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $profile): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr class="gradeA odd" role="row">
-                                        <td>{{ $profile->name }}</td>
+                                        <td><?php echo e($profile->name); ?></td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-info btn-xs btn_list_options">
+                                                <a href="<?php echo e(route('profiles.permissions', $profile->id)); ?>" class="btn btn-info btn-xs btn_list_options">
                                                     <i class="fa fa-key" aria-hidden="true"></i>
                                                 </a>
-                                                <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-success btn-xs btn_list_options">
+                                                <a href="<?php echo e(route('profiles.show', $profile->id)); ?>" class="btn btn-success btn-xs btn_list_options">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
-                                                <a href=" {{ route('profiles.edit', $profile->id) }}" class="btn btn-primary btn-xs btn_list_options">
+                                                <a href=" <?php echo e(route('profiles.edit', $profile->id)); ?>" class="btn btn-primary btn-xs btn_list_options">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
-                                                <form method="POST" action="{{ route('profiles.destroy', $profile->id) }}">
-                                                    @csrf
+                                                <form method="POST" action="<?php echo e(route('profiles.destroy', $profile->id)); ?>">
+                                                    <?php echo csrf_field(); ?>
                                                     <input name="_method" type="hidden" value="DELETE">
                                                     <button type="submit" class="btn btn-danger btn-xs btn_list_options show_confirm" data-toggle="tooltip" title='Eliminar'><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                 </form> 
                                             </div>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
-                            @if (isset($filters))
-                                {!! $profiles-> appends($filters)->links() !!} <!-- appends envia variable en la paginacion-->
-                            @else
-                                {!! $profiles-> links() !!}    
-                            @endif
+                            <?php if(isset($filters)): ?>
+                                <?php echo $profiles-> appends($filters)->links(); ?> <!-- appends envia variable en la paginacion-->
+                            <?php else: ?>
+                                <?php echo $profiles-> links(); ?>    
+                            <?php endif; ?>
                             
                         </div>
                     </div>
@@ -117,4 +116,5 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('tema.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Conecta-Desarrollo\Documents\laravel\5.8\larafood\resources\views/admin/pages/profiles/index.blade.php ENDPATH**/ ?>

@@ -3,13 +3,16 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Listado de perfiles</h2>
+        <h2>Permisos del perfil {{ $profile->name }}</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="{{ route('admin.index') }}">Inicio</a>
             </li>
             <li class="breadcrumb-item active">
                 <a href="{{ route('profiles.index') }}">Perfiles</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a href="{{ route('profiles.permissions', $profile->id) }}">Permisos de {{ $profile->name }} </a>
             </li>
         </ol>
     </div>
@@ -23,7 +26,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <a href="{{ route('profiles.create') }}" title="Crear un perfil" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Perfil</a>
+                                <a href="{{ route('profiles.permissions.available',$profile->id) }}" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Permiso</a>
                             </div>
                         </div>
                     </div>
@@ -73,30 +76,18 @@
                                             colspan="1" aria-label="Name: activate to sort column ascending"
                                             style="width: 299px;">Nombre</th>
                                         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                        colspan="1"
-                                        style="width: 150px;">Acciones</th>    
+                                        colspan="1" style="width: 150px;">Acciones</th>    
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($profiles as $profile)
+                                    @foreach ($permissions as $permission)
                                     <tr class="gradeA odd" role="row">
-                                        <td>{{ $profile->name }}</td>
+                                        <td>{{ $permission->name }}</td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-info btn-xs btn_list_options">
-                                                    <i class="fa fa-key" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-success btn-xs btn_list_options">
-                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                </a>
                                                 <a href=" {{ route('profiles.edit', $profile->id) }}" class="btn btn-primary btn-xs btn_list_options">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </a>
-                                                <form method="POST" action="{{ route('profiles.destroy', $profile->id) }}">
-                                                    @csrf
-                                                    <input name="_method" type="hidden" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger btn-xs btn_list_options show_confirm" data-toggle="tooltip" title='Eliminar'><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                </form> 
                                             </div>
                                         </td>
                                     </tr>
@@ -104,9 +95,9 @@
                                 </tbody>
                             </table>
                             @if (isset($filters))
-                                {!! $profiles-> appends($filters)->links() !!} <!-- appends envia variable en la paginacion-->
+                                {!! $permissions-> appends($filters)->links() !!} <!-- appends envia variable en la paginacion-->
                             @else
-                                {!! $profiles-> links() !!}    
+                                {!! $permissions-> links() !!}    
                             @endif
                             
                         </div>

@@ -22,15 +22,15 @@
 <body>
     <div id="wrapper">
 
-        @include('tema.sidebar')
+        <?php echo $__env->make('tema.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <div id="page-wrapper" class="gray-bg">
 
-            @include('admin.includes.alerts')
+            <?php echo $__env->make('admin.includes.alerts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-            @include('tema.nav')
+            <?php echo $__env->make('tema.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
 
         </div>
     </div>
@@ -450,4 +450,4 @@
     </script>
 </body>
 
-</html>
+</html><?php /**PATH C:\Users\Conecta-Desarrollo\Documents\laravel\5.8\larafood\resources\views/tema/app.blade.php ENDPATH**/ ?>

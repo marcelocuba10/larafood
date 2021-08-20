@@ -26,9 +26,9 @@ class PermissionProfileController extends Controller
             return redirect()->back();
         }
 
-        $permissions = $profile->permissions()->paginate();
+        $permissions = $profile->permissions()->paginate();  //trae todos permisos vinculado al perfil seleccionado
 
-        return view('admin.pages.profiles.permissions.permissions', compact('profile', 'permissions'));
+        return view('admin.pages.profiles.permissions.index', compact('profile', 'permissions'));
     }
 
     public function permissionsAvailable($idProfile)
@@ -38,8 +38,8 @@ class PermissionProfileController extends Controller
             return redirect()->back();
         }
 
-        //$permissions = $this->permission->all(); 
-        $permissions = $this->permission->paginate();
+        //$permissions = $this->permission->all(); //trae todos permisos
+        $permissions = $profile->permissionsAvailable(); //trae los permisos menos los que ya estan vinculados
 
         return view('admin.pages.profiles.permissions.available', compact('profile', 'permissions'));
     }
@@ -51,13 +51,15 @@ class PermissionProfileController extends Controller
             return redirect()->back();
         }
 
+        //verificamos si marco algun permiso
         if (!$request->permissions || count($request->permissions) == 0) {
             return redirect()
                 ->back()
                 ->with('message', 'Se requiere por lo menos un permiso.');
         }
 
-        $profile->permissions()->attach($request->permissions); //vincula permisos en el perfil. //permissions es una funcion en el model profile //attach es un metodo de laravel
+        //vinculamos los permisos al perfil
+        $profile->permissions()->attach($request->permissions); //permissions es una funcion en el model profile //attach es un metodo de vincular en laravel
 
         return redirect()->route('profiles.permissions', $profile->id);
     }

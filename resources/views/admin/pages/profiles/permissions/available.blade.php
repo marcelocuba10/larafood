@@ -69,6 +69,7 @@
                                         @foreach ($permissions as $permission)
                                         <tr>
                                             <td>
+                                                <!-- cada checkbox tiene como valor el ID del permiso, al marcar un checkbox envia el id del permiso -->
                                                 <input type="checkbox" name="permissions[]" value="{{ $permission->id }}">
                                             </td>
                                             <td>{{ $permission->name }}</td>

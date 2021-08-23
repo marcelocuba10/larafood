@@ -1,21 +1,20 @@
-@extends('tema.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Permisos disponibles para el perfil {{ $profile->name }}</h2>
+        <h2>Perfiles disponibles para el Permiso <?php echo e($permission->name); ?></h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('admin.index') }}">Inicio</a>
+                <a href="<?php echo e(route('admin.index')); ?>">Inicio</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ route('profiles.index') }}">Perfiles</a>
+                <a href="<?php echo e(route('permissions.index')); ?>">Permisos</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="{{ route('profiles.permissions', $profile->id) }}">Permisos de {{ $profile->name }} </a>
+                <a href="<?php echo e(route('permissions.profiles', $permission->id)); ?>">Perfiles de <?php echo e($permission->name); ?> </a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="{{ route('profiles.permissions.available',$profile->id) }}">Vincular permisos para {{ $profile->name }}</a>
+                <a href="<?php echo e(route('permissions.profiles.available',$permission->id)); ?>">Vincular perfiles para <?php echo e($permission->name); ?></a>
             </li>
         </ol>
     </div>
@@ -42,11 +41,11 @@
                                 </label>
                             </div>
 
-                            <form action="{{ route('profiles.permissions.available', $profile->id) }}" method="POST">
-                                @csrf
+                            <form action="<?php echo e(route('permissions.profiles.available', $permission->id)); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
                                 <div id="DataTables_Table_0_filter" class="dataTables_filter">
                                     <label>Buscar: 
-                                        <input type="search" name="filter" class="form-control form-control-sm" value="{{ $filters['filter'] ?? '' }}" aria-controls="DataTables_Table_0">
+                                        <input type="search" name="filter" class="form-control form-control-sm" value="<?php echo e($filters['filter'] ?? ''); ?>" aria-controls="DataTables_Table_0">
                                     </label>
                                     <button class="btn btn-success btn-xs btn_list_options" type="submit" style="border-top-left-radius: 5px !important;border-top-right-radius: 5px !important;margin-top: -5px">Filtrar</button>
                                 </div>
@@ -64,17 +63,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <form action="{{ route('profiles.permissions.attach', $profile->id) }}" method="POST">
-                                        @csrf
-                                        @foreach ($permissions as $permission)
+                                    <form action="<?php echo e(route('permissions.profiles.attach', $permission->id)); ?>" method="POST">
+                                        <?php echo csrf_field(); ?>
+                                        <?php $__currentLoopData = $profiles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $profile): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td>
                                                 <!-- cada checkbox tiene como valor el ID del permiso, al marcar un checkbox envia el id del permiso -->
-                                                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}">
+                                                <input type="checkbox" name="profiles[]" value="<?php echo e($profile->id); ?>">
                                             </td>
-                                            <td>{{ $permission->name }}</td>
+                                            <td><?php echo e($profile->name); ?></td>
                                         </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td colspan="500">
                                                 <button class="btn btn-primary " type="submit"><i class="fa fa-check"></i>&nbsp;Vincular</button>
@@ -83,11 +82,11 @@
                                     </form>
                                 </tbody>
                             </table>
-                            @if (isset($filters))
-                                {!! $permissions-> appends($filters)->links() !!} <!-- appends envia variable en la paginacion-->
-                            @else
-                                {!! $permissions-> links() !!}    
-                            @endif
+                            <?php if(isset($filters)): ?>
+                                <?php echo $profiles-> appends($filters)->links(); ?> <!-- appends envia variable en la paginacion-->
+                            <?php else: ?>
+                                <?php echo $profiles-> links(); ?>    
+                            <?php endif; ?>
                             
                         </div>
                     </div>
@@ -97,4 +96,5 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('tema.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Conecta-Desarrollo\Documents\laravel\5.8\larafood\resources\views/admin/pages/permissions/profiles/available.blade.php ENDPATH**/ ?>

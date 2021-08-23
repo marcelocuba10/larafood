@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <a href="<?php echo e(route('profiles.permissions.available',$profile->id)); ?>" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Permiso</a>
+                                <a href="<?php echo e(route('profiles.permissions.available',$profile->id)); ?>" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Asignar Nuevo Permiso</a>
                             </div>
                         </div>
                     </div>
@@ -84,8 +84,8 @@
                                         <td><?php echo e($permission->name); ?></td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <a href=" <?php echo e(route('profiles.edit', $profile->id)); ?>" class="btn btn-primary btn-xs btn_list_options">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                <a href=" <?php echo e(route('profiles.permissions.detach', [$profile->id, $permission->id])); ?>" class="btn btn-danger btn-xs btn_list_options">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </div>
                                         </td>

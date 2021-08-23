@@ -2,16 +2,16 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Permisos del perfil <?php echo e($profile->name); ?></h2>
+        <h2>Perfiles asociados al permiso <?php echo e($permission->name); ?></h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="<?php echo e(route('admin.index')); ?>">Inicio</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="<?php echo e(route('profiles.index')); ?>">Perfiles</a>
+                <a href="<?php echo e(route('permissions.index')); ?>">Permisos</a>
             </li>
             <li class="breadcrumb-item active">
-                <a href="<?php echo e(route('profiles.permissions', $profile->id)); ?>">Permisos de <?php echo e($profile->name); ?> </a>
+                <a href="<?php echo e(route('permissions.profiles', $permission->id)); ?>">perfiles del permiso <?php echo e($permission->name); ?> </a>
             </li>
         </ol>
     </div>
@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <a href="<?php echo e(route('profiles.permissions.available',$profile->id)); ?>" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo Permiso</a>
+                                <a href="<?php echo e(route('permissions.profiles.available',$permission->id)); ?>" class="btn btn-primary btn-xs btn_list_options"><i class="fa fa-plus" aria-hidden="true"></i> Agregar nuevo perfil a este permiso</a>
                             </div>
                         </div>
                     </div>
@@ -79,14 +79,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $__currentLoopData = $permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = $profiles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $profile): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr class="gradeA odd" role="row">
-                                        <td><?php echo e($permission->name); ?></td>
+                                        <td><?php echo e($profile->name); ?></td>
                                         <td class="text-right">
                                             <div class="btn-group">
-                                                <a href=" <?php echo e(route('profiles.edit', $profile->id)); ?>" class="btn btn-primary btn-xs btn_list_options">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                </a>
+                                                <a href=" <?php echo e(route('permissions.profiles.detach', [$profile->id, $permission->id])); ?>" class="btn btn-danger btn-xs btn_list_options"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -94,9 +92,9 @@
                                 </tbody>
                             </table>
                             <?php if(isset($filters)): ?>
-                                <?php echo $permissions-> appends($filters)->links(); ?> <!-- appends envia variable en la paginacion-->
+                                <?php echo $profiles-> appends($filters)->links(); ?> <!-- appends envia variable en la paginacion-->
                             <?php else: ?>
-                                <?php echo $permissions-> links(); ?>    
+                                <?php echo $profiles-> links(); ?>    
                             <?php endif; ?>
                             
                         </div>
@@ -108,4 +106,4 @@
 </div>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('tema.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Conecta-Desarrollo\Documents\laravel\5.8\larafood\resources\views/admin/pages/profiles/permissions/permissions.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('tema.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Conecta-Desarrollo\Documents\laravel\5.8\larafood\resources\views/admin/pages/permissions/profiles/index.blade.php ENDPATH**/ ?>

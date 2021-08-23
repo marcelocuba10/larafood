@@ -83,6 +83,9 @@
                                         <td>{{ $permission->name }}</td>
                                         <td class="text-right">
                                             <div class="btn-group">
+                                                <a href="{{ route('permissions.profiles', $permission->id) }}" class="btn btn-info btn-xs btn_list_options">
+                                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                                </a>
                                                 <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-success btn-xs btn_list_options">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>

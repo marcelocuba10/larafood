@@ -7,10 +7,19 @@ Route::prefix('admin')
         /**
          * Routes Permissions x Profiles
          */
-        
+
+        Route::get('profiles/{id}/permissions/{idPermission}/detach','ACL\PermissionProfileController@detachPermissionsProfile')->name('profiles.permissions.detach');
+        Route::get('permissions/{id}/profiles/{idProfile}/detach','ACL\PermissionProfileController@detachProfilesPermission')->name('permissions.profiles.detach');
+
         Route::post('profiles/{id}/permissions/store','ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
-        Route::get('profiles/{id}/permissions/create','ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+        Route::post('permissions/{id}/profiles/store','ACL\PermissionProfileController@attachProfilesPermission')->name('permissions.profiles.attach');
+
+        //para filtrar permisos disponibles de un perfil, re utilizamos la misma ruta, mudamos para any
+        Route::any('profiles/{id}/permissions/create','ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
+        Route::any('permissions/{id}/profiles/create','ACL\PermissionProfileController@profilesAvailable')->name('permissions.profiles.available');
+
         Route::get('profiles/{id}/permissions','ACL\PermissionProfileController@permissions')->name('profiles.permissions');
+        Route::get('permissions/{id}/profiles','ACL\PermissionProfileController@profiles')->name('permissions.profiles');
 
         /**
          * Routes Permissions

@@ -88,7 +88,7 @@
                                     <tr class="gradeA odd" role="row">
                                         <td>{{ $plan->name }}</td>
                                         <td>{{ $plan->description }}</td>
-                                        <td>{{ number_format($plan->price,3,',','.') }}</td>
+                                        <td>{{ number_format($plan->price,0,',','.') }}</td>
                                         <td>
                                             <span
                                                 class="label label-primary @if($plan->status == 1) label-primary @else label-warning @endif">{{

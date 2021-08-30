@@ -2,6 +2,8 @@
 
 Route::prefix('admin')
     ->namespace('admin')
+    //middleware filtra las solicitudes HTTP que ingresan en la aplicación. Por ejemplo, verifica que el usuario de su aplicación esté autenticado.
+    ->middleware('auth')
     ->group(function () {
 
         /**
@@ -66,13 +68,28 @@ Route::prefix('admin')
         Route::get('plans', 'PlanController@index')->name('plans.index');
         Route::any('plans/search', 'PlanController@search')->name('plans.search');
 
-        Route::get('dashboard', 'PlanController@home')->name('admin.dashboard');
+        Route::get('dashboard', 'HomeController@index')->name('admin.dashboard');
         Route::get('/', 'PlanController@index')->name('admin.index');
     });
 
 /**
- * Home Dashboard
+ * Site Routes
  * 
  */
 
-Route::get('/', 'Admin\PlanController@home');
+Route::get('/', 'Site\SiteController@index');
+
+
+/**
+ * Auth Routes
+ * 
+ */
+
+Auth::routes();
+Route::get('logout', function ()
+{
+    auth()->logout();
+    Session()->flush();
+
+    return Redirect::to('/');
+})->name('logout');

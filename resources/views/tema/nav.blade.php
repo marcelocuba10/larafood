@@ -7,7 +7,7 @@
             <li style="padding: 20px">
                 <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme</span>
             </li>
-            <li><a href="login.html"><i class="fa fa-sign-out"></i> Log out</a></li>
+            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out"></i> Log out</a></li>
         </ul>
     </nav>
 </div>

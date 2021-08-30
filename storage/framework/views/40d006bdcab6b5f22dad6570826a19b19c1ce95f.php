@@ -87,7 +87,7 @@
                                     <tr class="gradeA odd" role="row">
                                         <td><?php echo e($plan->name); ?></td>
                                         <td><?php echo e($plan->description); ?></td>
-                                        <td><?php echo e(number_format($plan->price,3,',','.')); ?></td>
+                                        <td><?php echo e(number_format($plan->price,0,',','.')); ?></td>
                                         <td>
                                             <span
                                                 class="label label-primary <?php if($plan->status == 1): ?> label-primary <?php else: ?> label-warning <?php endif; ?>"><?php echo e($plan->status == 1 ? 'enable' : 'disable'); ?></span>

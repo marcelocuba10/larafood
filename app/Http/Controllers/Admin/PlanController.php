@@ -19,11 +19,6 @@ class PlanController extends Controller
         $this->repository = $plan;
     }
 
-    public function home()
-    {
-        return view('admin.pages.dashboard');
-    }
-
     public function index()
     {
         $title = "Plans";
